@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Initialize Swiper Carousel
+// Initialize Swiper Carousel - Without navigation buttons
 document.addEventListener('DOMContentLoaded', function() {
   if (typeof Swiper !== 'undefined') {
     const infoSwiper = new Swiper('.info-carousel', {
@@ -91,10 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
         el: '.swiper-pagination',
         clickable: true,
       },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
+      // Removed navigation completely
       breakpoints: {
         320: {
           slidesPerView: 1,
@@ -517,6 +514,24 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// Enhanced game card interactions for mobile
+document.addEventListener('DOMContentLoaded', function() {
+  const gameCards = document.querySelectorAll('.game-card');
+
+  gameCards.forEach(card => {
+    // Touch events for mobile
+    card.addEventListener('touchstart', function(e) {
+      this.style.transform = 'translateY(-5px) scale(1.02)';
+    }, { passive: true });
+
+    card.addEventListener('touchend', function(e) {
+      setTimeout(() => {
+        this.style.transform = 'translateY(0) scale(1)';
+      }, 150);
+    }, { passive: true });
+  });
+});
+
 // Initialize security quiz first question
 document.addEventListener('DOMContentLoaded', function () {
   if (typeof securityQuestions !== 'undefined' && securityQuestions.length > 0) {
@@ -565,7 +580,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.classList.add('touch-device');
 
     // Enhance button touch feedback
-    const buttons = document.querySelectorAll('.btn, .email-btn, .security-btn, .option');
+    const buttons = document.querySelectorAll('.btn, .email-btn, .security-btn, .option, .play-button');
     buttons.forEach(btn => {
       btn.addEventListener('touchstart', function() {
         this.style.transform = 'scale(0.95)';
