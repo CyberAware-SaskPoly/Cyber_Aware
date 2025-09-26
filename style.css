@@ -77,7 +77,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* Enhanced Mobile burger menu with better background */
+/* Enhanced Mobile burger menu with fixed margins */
 .menu-toggle {
   display: none;
   background: transparent;
@@ -134,7 +134,7 @@ body {
     box-shadow: 0 4px 20px rgba(0,0,0,.2);
     display: none;
     flex-direction: column;
-    padding: 1rem 0;
+    padding: 0; /* Removed padding */
   }
 
   .nav-menu.open { 
@@ -145,10 +145,19 @@ body {
     padding: 1rem 2rem; 
     border-radius: 0;
     border-bottom: 1px solid rgba(255,255,255,.1);
+    margin: 0; /* Removed margin */
+    display: block;
+    width: 100%;
   }
 
   .nav-link:last-child {
     border-bottom: none;
+  }
+
+  /* Fixed hover state for mobile */
+  .nav-link:hover {
+    background: rgba(255,255,255,.1);
+    transform: none;
   }
 }
 
@@ -238,6 +247,32 @@ body {
 .hero-buttons {
   display: flex;
   gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Organized by section */
+.organized-by {
+  margin-top: 1rem;
+}
+
+.organized-by p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  color: rgba(255,255,255,.8);
+  font-style: italic;
+  background: rgba(255,255,255,.1);
+  padding: 0.75rem 1rem;
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.2);
+  max-width: fit-content;
+}
+
+.organized-by i {
+  color: var(--sask-orange);
+  font-size: 1.1rem;
 }
 
 /* Buttons */
@@ -341,15 +376,21 @@ body {
   margin-bottom: 3rem;
 }
 
-/* Carousel Section */
+/* Carousel Section - Fixed without navigation buttons */
 .carousel-section {
   background: var(--sask-grey-light);
 }
 
-.info-carousel {
+.carousel-wrapper {
+  position: relative;
   max-width: 900px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 20px; /* Reduced padding since no buttons */
+}
+
+.info-carousel {
+  overflow: hidden;
+  border-radius: 20px;
 }
 
 .info-card {
@@ -358,22 +399,16 @@ body {
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(123,46,141,.1);
   text-align: center;
-  min-height: 350px;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  margin: 0 10px; /* Space between slides */
 }
 
 .info-icon {
   font-size: 3rem;
   margin-bottom: 1rem;
-}
-
-.event-card .info-icon {
-  background: linear-gradient(45deg, var(--sask-purple), var(--sask-blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .info-card h3 {
@@ -405,30 +440,80 @@ body {
   font-style: italic;
 }
 
+/* Week activities styling */
+.week-activities {
+  background: var(--sask-grey-light);
+  padding: 1.5rem;
+  border-radius: 15px;
+  margin: 1.5rem 0;
+  text-align: left;
+  border-left: 4px solid var(--sask-purple);
+}
+
+.week-activities h4 {
+  color: var(--sask-purple-dark);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.week-activities ul {
+  list-style: none;
+  padding: 0;
+}
+
+.week-activities li {
+  padding: 0.5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+.week-activities li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--sask-purple);
+  font-weight: bold;
+}
+
 .theme-highlight {
   background: linear-gradient(45deg, var(--sask-orange), var(--sask-magenta));
   color: white;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 25px;
   font-weight: 600;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   display: inline-block;
+  font-size: 0.95rem;
 }
 
-/* Swiper Custom Styles */
+/* Swiper Custom Styles - Better pagination positioning */
+.swiper-pagination {
+  position: relative !important;
+  margin-top: 2rem !important;
+  text-align: center;
+}
+
 .swiper-pagination-bullet {
   background: var(--sask-purple);
   opacity: 0.4;
+  width: 12px;
+  height: 12px;
+  margin: 0 6px !important;
 }
 
 .swiper-pagination-bullet-active {
   opacity: 1;
   background: var(--sask-orange);
+  transform: scale(1.2);
 }
 
+/* Remove navigation buttons completely */
 .swiper-button-next,
 .swiper-button-prev {
-  color: var(--sask-purple);
+  display: none !important;
 }
 
 /* Flip Cards for Activities */
@@ -1014,90 +1099,121 @@ body {
   color: rgba(255,255,255,.8);
 }
 
-/* Tips Section - 2x2 Grid */
-.tips-section {
-  background: var(--sask-grey-light);
+/* Games Section - 2x2 Grid */
+.games-section {
+  background: linear-gradient(135deg, var(--sask-green) 0%, var(--sask-blue) 100%);
+  color: #fff;
 }
 
-.tips-grid-2x2 {
+.games-section .section-title {
+  color: #fff;
+}
+
+.games-section .section-title::after {
+  background: linear-gradient(90deg, var(--sask-grey-light) 0%, #fff 100%);
+}
+
+.games-section .section-subtitle {
+  color: rgba(255,255,255,.8);
+}
+
+.games-grid-2x2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
-.tip-card {
-  background: #fff;
+.game-card {
+  background: rgba(255,255,255,.1);
   padding: 2rem;
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(123,46,141,.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,.2);
+  cursor: pointer;
   transition: all .3s ease;
-  border-left: 5px solid var(--sask-purple);
+  text-align: center;
   position: relative;
   overflow: hidden;
 }
 
-.tip-card::before {
+.game-card::before {
   content:'';
   position: absolute;
   top: 0;
+  left: 0;
   right: 0;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(45deg, var(--sask-purple), var(--sask-purple-light));
-  opacity: .1;
-  border-radius: 50%;
-  transform: translate(50%, -50%);
+  height: 3px;
+  background: linear-gradient(90deg, var(--sask-orange) 0%, var(--sask-magenta) 100%);
 }
 
-.tip-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(123,46,141,.15);
-  border-left-color: var(--sask-orange);
+.game-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.2);
+  border-color: var(--sask-orange);
 }
 
-.tip-icon {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(45deg, var(--sask-purple), var(--sask-blue));
+.game-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(45deg, var(--sask-orange), var(--sask-magenta));
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  box-shadow: 0 8px 25px rgba(249,115,22,.3);
 }
 
-.tip-icon i {
-  font-size: 1.5rem;
+.game-icon i {
+  font-size: 2rem;
   color: #fff;
 }
 
-.tip-card h3 {
-  font-size: 1.3rem;
-  font-weight: 600;
+.game-card h3 {
+  font-size: 1.4rem;
   margin-bottom: 1rem;
-  color: var(--sask-purple-dark);
+  color: #fff;
+  font-weight: 700;
 }
 
-.tip-card ul {
-  list-style: none;
-  padding: 0;
+.game-card p {
+  color: rgba(255,255,255,.9);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
 }
 
-.tip-card li {
-  padding: .5rem 0;
-  color: #666;
-  position: relative;
-  padding-left: 1.5rem;
+.game-type {
+  background: rgba(255,255,255,.2);
+  color: #fff;
+  padding: .5rem 1rem;
+  border-radius: 20px;
+  font-size: .85rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.tip-card li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--sask-purple);
-  font-weight: bold;
+.play-button {
+  background: linear-gradient(45deg, var(--sask-orange), var(--sask-magenta));
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 15px rgba(249,115,22,.4);
+  transition: all .3s ease;
+}
+
+.game-card:hover .play-button {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(249,115,22,.6);
 }
 
 /* Sponsors Section */
@@ -1130,7 +1246,46 @@ body {
 .main-sponsor {
   background: linear-gradient(135deg, var(--sask-purple) 0%, var(--sask-blue) 100%);
   color: white;
-  grid-column: span 2;
+}
+
+/* AuthenTrend special styling */
+.authentrend-sponsor {
+  background: linear-gradient(135deg, #B040D4 0%, #6A1A9A 100%);
+  color: white;
+  border: 2px solid #B040D4;
+}
+
+.authentrend-sponsor:hover {
+  border-color: #B040D4;
+  box-shadow: 0 20px 40px rgba(176,64,212,.25);
+}
+
+.authentrend-logo {
+  background: rgba(255,255,255,.1) !important;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,.2);
+}
+
+.authentrend-logo span {
+  font-weight: 800;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  background: linear-gradient(45deg, #FF6B9D, #C471F5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.authentrend-sponsor h3 {
+  color: white !important;
+}
+
+.authentrend-sponsor .sponsor-role {
+  color: #FF6B9D !important;
+}
+
+.authentrend-sponsor p {
+  color: rgba(255,255,255,.9) !important;
 }
 
 .sponsor-logo {
@@ -1279,6 +1434,7 @@ body {
   .hero-buttons {
     flex-direction: column;
     align-items: center;
+    margin-bottom: 1rem;
   }
 
   .btn {
@@ -1286,26 +1442,34 @@ body {
     max-width: 280px;
   }
 
+  .organized-by p {
+    font-size: 0.9rem;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .carousel-wrapper {
+    padding: 0 15px; /* Further reduced on mobile */
+  }
+
+  .info-card {
+    min-height: 450px;
+    padding: 1.5rem;
+  }
+
   .threats-grid,
   .tools-grid,
-  .activities-grid {
+  .activities-grid,
+  .sponsors-grid {
     grid-template-columns: 1fr;
   }
 
-  .tips-grid-2x2 {
+  .games-grid-2x2 {
     grid-template-columns: 1fr;
   }
 
   .results-summary {
     flex-direction: column;
-  }
-
-  .sponsors-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .main-sponsor {
-    grid-column: span 1;
   }
 
   .section {
@@ -1330,20 +1494,19 @@ body {
     height: 280px;
   }
 
-  .info-card {
-    min-height: 300px;
+  .game-card,
+  .sponsor-card {
     padding: 1.5rem;
-  }
-
-  .swiper-button-next,
-  .swiper-button-prev {
-    display: none;
   }
 }
 
 @media (max-width: 480px) {
   .container {
     padding: 0 15px;
+  }
+
+  .carousel-wrapper {
+    padding: 0 10px;
   }
 
   .hero-text h1 {
@@ -1356,7 +1519,8 @@ body {
 
   .tool-card,
   .threat-card,
-  .tip-card {
+  .game-card,
+  .sponsor-card {
     padding: 1.5rem;
   }
 
