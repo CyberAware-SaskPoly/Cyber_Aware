@@ -1266,14 +1266,10 @@ body {
   border: 2px solid rgba(255,255,255,.2);
 }
 
-.authentrend-logo span {
-  font-weight: 800;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-  background: linear-gradient(45deg, #FF6B9D, #C471F5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.authentrend-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .authentrend-sponsor h3 {
