@@ -1658,7 +1658,7 @@ html {
   display: grid;
   /* Auto-fit and minmax() create responsive columns without media queries. */
   /* This creates a grid that will have at least 150px columns. */
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px; /* Adjust spacing between sponsor logos */
   padding: 10px;
 }
