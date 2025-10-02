@@ -1676,3 +1676,23 @@ html {
   max-width: 100%;
   height: auto;
 }
+
+/* Mobile-first: single column for all devices by default */
+.games-grid {
+  display: grid;
+  gap: 1rem; /* Creates spacing between grid items */
+}
+
+/* Tablet and larger screens: 2 columns */
+@media (min-width: 768px) {
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop screens: 3 columns */
+@media (min-width: 1024px) {
+  .games-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
