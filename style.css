@@ -1653,3 +1653,26 @@ html {
 .section {
   animation: fadeIn .6s ease-out;
 }
+
+.sponsors-grid {
+  display: grid;
+  /* Auto-fit and minmax() create responsive columns without media queries. */
+  /* This creates a grid that will have at least 150px columns. */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px; /* Adjust spacing between sponsor logos */
+  padding: 10px;
+}
+
+.sponsor-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #f0f0f0; /* Example background */
+  border-radius: 8px;
+}
+
+.sponsor-item img {
+  max-width: 100%;
+  height: auto;
+}
